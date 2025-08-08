@@ -20,7 +20,7 @@ import { Loader2 } from "lucide-react";
 import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import { signIn, signUp } from "@/lib/actions.ts/user.actions";
+import { getLoggedInUser, signIn, signUp } from "@/lib/actions.ts/user.actions";
 
 const formSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -47,7 +47,9 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
     try {
       // Sign up with appwrite & create plain link token
       if (type === "sign-up") {
+        console.log("sign-up");
         const newUser = await signUp(data);
+        console.log("newUser", newUser);
         setUser(newUser);
       }
       if (type === "sign-in") {
