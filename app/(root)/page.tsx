@@ -24,7 +24,20 @@ const Home = async () => {
         </header>
         RECENT TRANSACTIONS
       </div>
-      <RightSideBar user={loggedIn} transactions={[]} banks={[]} />
+      <RightSideBar
+        user={loggedIn}
+        transactions={[]}
+        banks={[
+          // @ts-ignore
+          {
+            currentBalance: 1250.35,
+          },
+          // @ts-ignore
+          {
+            currentBalance: 500,
+          },
+        ]}
+      />
     </section>
   );
 };
