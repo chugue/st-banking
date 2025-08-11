@@ -22,10 +22,6 @@ export const signIn = async ({ email, password }: signInProps) => {
 };
 
 export const signUp = async (userData: SignUpParams) => {
-  console.log(
-    "createSessionClient",
-    process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID!
-  );
   const { email, password, firstName, lastName } = userData;
   try {
     const { account } = await createAdminClient();
