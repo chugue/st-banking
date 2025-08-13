@@ -9,7 +9,7 @@ import { Button } from "./ui/button";
 import {
   createLinkToken,
   exchangePublicToken,
-} from "@/lib/actions.ts/user.actions";
+} from "@/lib/actions/user.actions";
 
 const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
   const [token, setToken] = useState("");

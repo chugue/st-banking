@@ -12,7 +12,7 @@ import { Loader2 } from "lucide-react";
 import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import { signIn, signUp } from "@/lib/actions.ts/user.actions";
+import { signIn, signUp } from "@/lib/actions/user.actions";
 import PlaidLink from "./PlaidLink";
 
 const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
