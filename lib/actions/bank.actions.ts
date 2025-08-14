@@ -19,15 +19,6 @@ export const getAccounts = async ({ userId }: getAccountsProps) => {
   try {
     // get banks from db
     const banks = await getBanks({ userId });
-    const bankList = Array.isArray(banks) ? banks : [];
-
-    if (bankList.length === 0) {
-      return parseStringify({
-        data: [],
-        totalBanks: 0,
-        totalCurrentBalance: 0,
-      });
-    }
 
     const accounts = await Promise.all(
       banks?.map(async (bank: Bank) => {
@@ -35,6 +26,7 @@ export const getAccounts = async ({ userId }: getAccountsProps) => {
         const accountsResponse = await plaidClient.accountsGet({
           access_token: bank.accessToken,
         });
+
         const accountData = accountsResponse.data.accounts[0];
 
         // get institution info from plaid
@@ -65,7 +57,12 @@ export const getAccounts = async ({ userId }: getAccountsProps) => {
       return total + account.currentBalance;
     }, 0);
 
-    return parseStringify({ data: accounts, totalBanks, totalCurrentBalance });
+    const result = parseStringify({
+      data: accounts,
+      totalBanks,
+      totalCurrentBalance,
+    });
+    return result;
   } catch (error) {
     console.error("An error occurred while getting the accounts:", error);
   }
