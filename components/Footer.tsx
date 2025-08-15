@@ -18,7 +18,11 @@ const Footer = ({ user, type = "desktop" }: FooterProps) => {
         <p className="text-xl font-bold text-gray-700">{user?.firstName[0]}</p>
       </div>
       <div
-        className={type === "mobile" ? "footer-email_mobile" : "footer-email"}
+        className={
+          type === "mobile"
+            ? "footer-email_mobile"
+            : "footer-email hidden xl:block"
+        }
       >
         <h1 className="text-14 truncate text-gray-600 font-semibold">
           {user?.firstName}
