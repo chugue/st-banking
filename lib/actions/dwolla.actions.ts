@@ -55,6 +55,13 @@ export const createDwollaCustomer = async ({
   firstName,
   lastName,
   email,
+  type = "personal",
+  address1,
+  city,
+  state,
+  postalCode,
+  dateOfBirth,
+  ssn,
 }: NewDwollaCustomerParams) => {
   try {
     const result = await dwollaClient
@@ -62,6 +69,13 @@ export const createDwollaCustomer = async ({
         firstName,
         lastName,
         email,
+        type,
+        address1,
+        city,
+        state,
+        postalCode,
+        dateOfBirth,
+        ssn,
       })
       .then((res) => res.headers.get("location"));
 

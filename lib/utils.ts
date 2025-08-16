@@ -221,7 +221,15 @@ export const authFormSchema = (type: "sign-up" | "sign-in") =>
     postalCode:
       type === "sign-in" ? z.string().optional() : z.string().min(3).max(6),
     dateOfBirth:
-      type === "sign-in" ? z.string().optional() : z.string().min(6).max(10),
+      type === "sign-in"
+        ? z.string().optional()
+        : z
+            .string()
+            .regex(/^\d{4}-\d{2}-\d{2}$/, "날짜 형식은 YYYY-MM-DD여야 합니다")
+            .refine((date) => {
+              const parsedDate = new Date(date);
+              return !isNaN(parsedDate.getTime());
+            }, "유효한 날짜를 입력해주세요"),
     ssn: type === "sign-in" ? z.string().optional() : z.string().min(9).max(9),
 
     // both

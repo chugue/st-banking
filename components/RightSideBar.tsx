@@ -4,6 +4,8 @@ import React from "react";
 import BankCard from "./BankCard";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 import { redirect, useRouter } from "next/navigation";
+import { countTransactionCategories } from "@/lib/utils";
+import { Category } from "./Category";
 
 const RightSideBar = async ({
   user,
@@ -13,6 +15,8 @@ const RightSideBar = async ({
   const loggedIn = await getLoggedInUser();
 
   if (!loggedIn) redirect("/sign-in");
+
+  const categories: CategoryCount[] = countTransactionCategories(transactions);
 
   return (
     <aside className="right-sidebar">
@@ -60,6 +64,15 @@ const RightSideBar = async ({
                 />
               </div>
             )}
+
+            <div className="mt-10 flex flex-1 flex-col w-full justify-start gap-6">
+              <h2 className="header-2">Top categories</h2>
+              <div className="space-y-5">
+                {categories.map((category) => (
+                  <Category key={category.name} category={category} />
+                ))}
+              </div>
+            </div>
           </div>
         )}
       </section>

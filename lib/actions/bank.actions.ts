@@ -12,7 +12,7 @@ import {
 import { plaidClient } from "@/lib/plaid";
 import { parseStringify } from "../utils";
 import { getBanks, getBank } from "@/lib/actions/user.actions";
-import { getTransactionsByBankId } from "./transactions.action";
+import { getTransactionsByBankId } from "./transaction.actions";
 
 // Get multiple bank accounts
 export const getAccounts = async ({ userId }: getAccountsProps) => {
